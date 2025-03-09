@@ -87,17 +87,17 @@
         <!-- 搜索表单区域 -->
         <form class="search-form" action="/search" method="post">
             <label for="name">姓名：</label>
-            <input type="text" id="name" name="name" placeholder="请输入姓名">
+            <input type="text" id="name" name="name" v-model="searchForm.name" placeholder="请输入姓名">
 
-            <label for="gender">性别：</label>
-            <select id="gender" name="gender">
+            <label for="gender" >性别：</label>
+            <select id="gender" name="gender" v-model="searchForm.gender">
                 <option value=""></option>
                 <option value="1">男</option>
                 <option value="2">女</option>
             </select>
 
             <label for="position">职位：</label>
-            <select id="position" name="position">
+            <select id="position" name="position" v-model="searchForm.job">
                 <option value=""></option>
                 <option value="1">班主任</option>
                 <option value="2">讲师</option>
@@ -106,8 +106,8 @@
                 <option value="5">咨询师</option>
             </select>
 
-            <button type="submit">查询</button>
-            <button type="reset">清空</button>
+            <button type="button" v-on:click="search">查询</button>
+            <button type="button" @click="clear">清空</button>
         </form>
 
         <!-- 表格展示区 -->
@@ -139,9 +139,26 @@
                     <!-- 插值表达式内可以用三元运算符对数据进行预处理 -->
                     <td>{{e.gender  == 1 ? '男':'女'}}</td>
                     <!-- 插值表达式不能出现在标签内部 -->
-                    <td><img class="avatar" v-bind:src='e.image' :alt=e.name></td>
+                        <!-- 应使用v-bind动态地为标签属性绑定值 -->
+                    <td><img class="avatar" v-bind:src=e.image :alt=e.name></td>
                     
-                    <td>{{e.job}}</td>
+                    <!-- 通过v-if控制元素的显示和隐藏 -->
+                    <!-- <td>
+                        <span v-if="e.job == '1'">班主任</span>
+                        <span v-else-if="e.job == '2'">讲师</span>
+                        <span v-else-if="e.job == '3'">学工主管</span>
+                        <span v-else-if="e.job == '4'">教研主管</span>
+                        <span v-else-if="e.job == '5'">咨询师</span>
+                        <span v-else>其他</span>
+                    </td> -->
+                    <!-- 通过v-show控制元素的显示和隐藏 -->
+                     <td>
+                        <span v-show="e.job == '1'">班主任</span>
+                        <span v-show="e.job == '2'">讲师</span>
+                        <span v-show="e.job == '3'">学工主管</span>
+                        <span v-show="e.job == '4'">教研主管</span>
+                        <span v-show="e.job == '5'">咨询师</span>
+                     </td>
                     <td>{{e.entrydate}}</td>
                     <td>{{e.updatetime}}</td>
                     <td class="action-buttons">
@@ -166,6 +183,11 @@
       createApp({
         data() {
           return {
+            searchForm:{ //封装用户输入的查询条件
+                name:'',
+                gender:'',
+                job:''
+            },
             empList: [
               { "id": 1,
                 "name": "谢逊",
@@ -180,7 +202,7 @@
                 "name": "韦一笑",
                 "image": "https://aliyun-oss-test-zgq.oss-cn-nanjing.aliyuncs.com/20231109115022_58073.jpg",
                 "gender": 1,
-                "job": "1",
+                "job": "3",
                 "entrydate": "2020-05-09",
                 "updatetime": "2024-09-01T00:00:00"
               },
@@ -195,7 +217,16 @@
               }
             ]
           }
-        }
+        },
+        methods: {
+            search(){
+                //将搜素条件输出到控制台
+                console.log(this.searchForm)
+            },
+            clear(){
+                this.searchForm={name:'',gener:'',job:''}
+            }
+        },
       }).mount('#container')
     </script>
 

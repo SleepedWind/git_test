@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajax-Axios</title>
 </head>
+
 <body>
-    
+
     <input type="button" value="获取数据GET" id="btnGet">
     <input type="button" value="操作数据POST" id="btnPost">
 
@@ -15,30 +17,31 @@
     <script>
         //发送GET请求
         document.querySelector('#btnGet').addEventListener('click', () => {
-           //axios发起异步请求
-           axios({
-            url:'https://petstore-demo.apifox.com/pet/1',
-            method:'GET'
-           }).then((result) => {//成功回调函数
-            console.log(result.data);
-           }).catch((err) => {//失败回调函数
-            console.log(err);
-           })
+            //axios发起异步请求
+            axios({
+                url: 'https://petstore-demo.apifox.com/pet/1',
+                method: 'GET'
+            }).then((result) => {//成功回调函数
+                console.log(result.data);
+            }).catch((err) => {//失败回调函数
+                console.log(err);
+            })
         })
-        
+
         //发送POST请求
         document.querySelector('#btnPost').addEventListener('click', () => {
             //axios发起异步请求
-           axios({
-            url:'https://petstore-demo.apifox.com/pet',
-            method:'POST',
-            data:'id=1' //post请求方式请求体的数据
-           }).then((result) => {//成功回调函数
-            console.log(result);
-           }).catch((err) => {//失败回调函数
-            console.log(err);
-           })
+            axios({
+                url: 'https://petstore-demo.apifox.com/pet',
+                method: 'POST',
+                data: 'id=1' //post请求方式请求体的数据
+            }).then((result) => {//成功回调函数
+                console.log(result);
+            }).catch((err) => {//失败回调函数
+                console.log(err);
+            })
         })
     </script>
 </body>
+
 </html>

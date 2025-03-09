@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vue-快速入门</title>
-  </head>
-  <body>
-    <div id="id">
-      <!-- 2. 在绑定的div中使用插值表达式{{}}进行取值渲染 -->
-      {{message}}
-    </div>
-    <!-- 1.加入script标签，设置标签属性type为module -->
-    <script type="module">
-      // 1.1.使用import从vue的js文件中导入createApp函数
-      import{ createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
-      // 1.2. 使用createApp函数中的data方法，并在return的对象中设置data的返回值
-      createApp({
-        data(){
-          return {
-            message:'Hello Vue'
-          }
-        }
-      }).moount('#app')// 1.3. 使用mount将div和createApp函数进行绑定
-    </script>
 
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue-快速入门</title>
+</head>
+
+<body>
+  <div id="id">
+    <!-- 2. 在绑定的div中使用插值表达式{{}}进行取值渲染 -->
+    {{message}}
+  </div>
+  <!-- 1.加入script标签，设置标签属性type为module -->
+  <script type="module">
+    // 1.1.使用import从vue的js文件中导入createApp函数
+    import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+    // 1.2. 使用createApp函数中的data方法，并在return的对象中设置data的返回值
+    createApp({
+      data() {
+        return {
+          message: 'Hello Vue'
+        }
+      }
+    }).moount('#app')// 1.3. 使用mount将div和createApp函数进行绑定
+  </script>
+
+</body>
+
 </html>
